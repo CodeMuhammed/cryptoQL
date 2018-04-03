@@ -1,0 +1,66 @@
+
+.datagrid {
+    overflow: hidden;
+}
+
+.datagrid table {
+    border-collapse: collapse;
+    text-align: left;
+    width: 100%;
+}
+
+.datagrid table td,
+.datagrid table th {
+    padding: 10px 9px;
+}
+
+.datagrid table thead th {
+    color: rgba(0, 0, 0, 0.54);
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.datagrid table thead {
+    border-bottom-color: #e2e2e2;
+    border-bottom-width: thin;
+    border-bottom-style: solid;
+}
+
+.datagrid table thead th:first-child {
+    border: none;
+    color: rgba(0, 0, 0, 0.54);
+    font-weight: bold;
+}
+
+.datagrid table tbody td {
+    color: rgba(0, 0, 0, 0.64);
+    font-size: 12px;
+    font-weight: normal;
+}
+
+.datagrid table tbody tr:hover {
+    background-color: #efefef;
+}
+
+.datagrid table tbody .alt td {
+    color: #747080;
+}
+
+
+.datagrid table tbody td:first-child {
+    color: rgba(0, 0, 0, 0.64);
+    border-left: none;
+    font-weight: bold;
+}
+
+.datagrid table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.datagrid table tfoot {
+    border: none;
+}
+
+th, td {
+    border-left: 1px solid #efefef;
+}

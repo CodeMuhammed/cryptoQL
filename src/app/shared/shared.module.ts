@@ -5,14 +5,30 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { Mat_LOADERS } from "./mat-loaders";
 
+import {
+    NavbarComponent,
+    SubmenuComponent,
+    ToolbarComponent,
+    ThumbnailComponent
+} from './components';
+
 @NgModule({
-    declarations: [],
+    declarations: [
+        NavbarComponent,
+        SubmenuComponent,
+        ToolbarComponent,
+        ThumbnailComponent
+    ],
     exports: [
         FormsModule,
         ReactiveFormsModule,
         CommonModule,
         RouterModule,
-        Mat_LOADERS.IMPORTS
+        Mat_LOADERS.IMPORTS,
+        NavbarComponent,
+        SubmenuComponent,
+        ToolbarComponent,
+        ThumbnailComponent
     ],
     imports: [
         Mat_LOADERS.IMPORTS,
@@ -22,6 +38,6 @@ import { Mat_LOADERS } from "./mat-loaders";
         RouterModule
     ],
     providers: [],
-    entryComponents: [ ]
+    entryComponents: []
 })
 export class SharedModule { }

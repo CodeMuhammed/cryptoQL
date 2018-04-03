@@ -3,7 +3,12 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 /* our own custom services  */
-import { } from './services';
+import { 
+  CoinsService,
+  HttpService,
+  RouterService,
+  AuthService
+} from './services';
 
 @NgModule({
   imports: [],
@@ -12,7 +17,10 @@ import { } from './services';
   declarations: [
   ],
   providers: [
-    /** Add imported componenets here */
+    CoinsService,
+    HttpService,
+    RouterService,
+    AuthService
   ]
 })
 export class CoreModule {
