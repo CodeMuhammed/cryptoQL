@@ -8,7 +8,7 @@ import { Component } from "@angular/core";
 })
 export class AppComponent {
     public items = [
-      { name: 'Airdrops', path: 'airdrops' , icon: 'card_giftcard' }
+      { name: 'Airdrops', path: 'airdrops' , icon: 'card_giftcard' },
       { name: 'coinList', path: 'coins' , icon: 'monetization_on' }
     ];
     constructor() { }
