@@ -19,7 +19,7 @@ export class AuthService {
             this.authState = auth;
 
             setTimeout(() => {
-                let url = this.authState ? '/airdrops' : '/auth';
+                let url = this.authState ? '/portfolio' : '/auth';
                 this.router.navigateByUrl(url);
             }, 300);
         });

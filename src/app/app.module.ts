@@ -15,6 +15,8 @@ import { CoreModule } from 'app/core';
 import { SharedModule } from 'app/shared';
 import { AppComponent } from './components';
 
+import * as Rxjs from 'rxjs';
+
 @NgModule({
   declarations: [
     AppComponent

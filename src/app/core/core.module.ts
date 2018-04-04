@@ -7,7 +7,9 @@ import {
   CoinsService,
   HttpService,
   RouterService,
-  AuthService
+  AuthService,
+  FirestoreService,
+  UserService
 } from './services';
 
 @NgModule({
@@ -20,7 +22,9 @@ import {
     CoinsService,
     HttpService,
     RouterService,
-    AuthService
+    AuthService,
+    FirestoreService,
+    UserService
   ]
 })
 export class CoreModule {

@@ -13,7 +13,7 @@ export const AppRoutes = [
         loadChildren: ()=> AuthModule
     },
     {
-        path: 'airdrops',
+        path: 'portfolio',
         loadChildren: ()=> AirdropModule
     },
     {
