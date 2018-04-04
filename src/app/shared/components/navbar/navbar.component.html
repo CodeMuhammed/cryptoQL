@@ -13,7 +13,7 @@
 
         <div fxFlex style="overflow: auto">
             <mat-nav-list *ngFor="let item of items" style="padding-top: 0">
-                <mat-list-item (click)="closeNav()" 
+                <mat-list-item (click)="closeNav()"
                    [routerLink]="item.path"
                    routerLinkActive="menu-active"
                    [routerLinkActiveOptions]="{exact:false}">
@@ -35,5 +35,7 @@
 
     </mat-sidenav>
     <app-toolbar [toggleMenuButton]="isOver()" [nav]="nav"></app-toolbar>
+
+    <router-outlet> </router-outlet>
 
 </mat-sidenav-container>

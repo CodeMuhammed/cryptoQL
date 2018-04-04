@@ -15,10 +15,11 @@ export class AuthService {
         private router: Router
     ) {
         this.afAuth.auth.onAuthStateChanged(auth => {
+            console.log(auth);
             this.authState = auth;
 
             setTimeout(() => {
-                let url = this.authState ? '/dashboard' : '/login';
+                let url = this.authState ? '/airdrops' : '/auth';
                 this.router.navigateByUrl(url);
             }, 300);
         });
