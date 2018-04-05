@@ -8,13 +8,10 @@ import { Router } from '@angular/router';
 })
 export class NavbarComponent {
     @ViewChild('nav') public nav;
-    @Input() public items;
-
-    public userMail = localStorage.getItem("user_email");
-    public player: any;
+    @Input() public routes;
+    @Input() public user;
 
     constructor(private router: Router) { }
-
     ngOnInit() { }
 
     public isOver(): boolean {
@@ -25,6 +22,17 @@ export class NavbarComponent {
         if (this.isOver()) {
             this.nav.close();
         }
+    }
+
+    public formatUserEmail(email: string) {
+        let ttlIndex = email.indexOf('@');
+        let ttl = email.substr(ttlIndex);
+        let domain = email.substr(0, ttlIndex);
+        let rest = domain.length > 8 ? '...' : '';
+
+        email = domain.substr(0, 8) + rest + ttl;
+
+        return email;
     }
 }
 

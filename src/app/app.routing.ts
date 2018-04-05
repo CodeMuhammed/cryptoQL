@@ -10,14 +10,14 @@ export const AppRoutes = [
     },
     {
         path: 'auth',
-        loadChildren: ()=> AuthModule
+        loadChildren: './auth-module/auth.module#AuthModule'
     },
     {
         path: 'portfolio',
-        loadChildren: ()=> AirdropModule
+        loadChildren: './airdrop-module/airdrop.module#AirdropModule'
     },
     {
         path: 'coinlist',
-        loadChildren: () => CoinListModule
+        loadChildren: './coinlist-module/coinlist.module#CoinListModule'
     }
 ];

@@ -12,23 +12,23 @@
         </div>
 
         <div fxFlex style="overflow: auto">
-            <mat-nav-list *ngFor="let item of items" style="padding-top: 0">
+            <mat-nav-list *ngFor="let route of routes" style="padding-top: 0">
                 <mat-list-item (click)="closeNav()"
-                   [routerLink]="item.path"
+                   [routerLink]="route.path"
                    routerLinkActive="menu-active"
                    [routerLinkActiveOptions]="{exact:false}">
-                    <mat-icon style="margin-right: 6px">{{ item.icon }}</mat-icon>
-                    {{ item.name }}
+                    <mat-icon style="margin-right: 6px">{{ route.icon }}</mat-icon>
+                    {{ route.name }}
                 </mat-list-item>
             </mat-nav-list>
         </div>
 
-        <div class="textA4s" *ngIf="player" (click)="gotoProfile(); closeNav()">
+        <div class="textA4s" *ngIf="user">
             <span fxLayout="row">
-                <thumbnail [image]="player.photoUrl"> </thumbnail>
+                <thumbnail [image]="user.picture"> </thumbnail>
                 <span fxLayoutAlign="center" fxLayout="column">
-                    <b>{{ player.firstName }} {{ player.lastName }}</b>
-                    <span>{{ formatPlayerEmail(player.email)}}</span>
+                    <b>{{ user.firstName }} {{ user.lastName }}</b>
+                    <span>{{ formatUserEmail(user.email)}}</span>
             </span>
             </span>
         </div>

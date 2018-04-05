@@ -9,19 +9,25 @@ import { Router } from '@angular/router';
 export class AuthService {
     public redirectUrl = '';
     private authState: any = null;
+    private isFirstAuth: boolean = true;
+    public authState$: any;
 
     public constructor(
         private afAuth: AngularFireAuth,
         private router: Router
     ) {
-        this.afAuth.auth.onAuthStateChanged(auth => {
-            console.log(auth);
+        this.authState$ = this.afAuth.auth;
+        this.authState$.onAuthStateChanged(auth => {
             this.authState = auth;
 
-            setTimeout(() => {
-                let url = this.authState ? '/portfolio' : '/auth';
-                this.router.navigateByUrl(url);
-            }, 300);
+            if (this.isFirstAuth) {
+                // we can show the loading screen @TODO
+                setTimeout(() => {
+                    this.isFirstAuth = false;
+                    let url = this.authState ? '/portfolio' : '/auth';
+                    this.router.navigateByUrl(url);
+                }, 300);
+            }
         });
     }
 
