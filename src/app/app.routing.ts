@@ -1,6 +1,4 @@
-import { AuthModule } from 'app/auth-module/auth.module';
-import { AirdropModule } from 'app/airdrop-module/airdrop.module';
-import { CoinListModule } from 'app/coinlist-module/coinlist.module';
+import { AuthGuard } from 'app/core' 
 
 export const AppRoutes = [
     {
@@ -10,14 +8,16 @@ export const AppRoutes = [
     },
     {
         path: 'auth',
-        loadChildren: './auth-module/auth.module#AuthModule'
+        loadChildren: './auth-module/auth.module#AuthModule',
     },
     {
         path: 'portfolio',
-        loadChildren: './airdrop-module/airdrop.module#AirdropModule'
+        loadChildren: './portfolio-module/portfolio.module#PortfolioModule',
+        canActivate: [AuthGuard],
     },
     {
         path: 'coinlist',
-        loadChildren: './coinlist-module/coinlist.module#CoinListModule'
+        loadChildren: './coinlist-module/coinlist.module#CoinListModule',
+        canActivate: [AuthGuard],
     }
 ];

@@ -18,12 +18,17 @@ export class AppComponent {
 
   ngOnInit() {
     this.authService.authState$.onAuthStateChanged(async (auth) => {
+      this.routes = [];
+      this.user = null;
+
       if (auth) {
         this.routes = [
           { name: 'Portfolio', path: 'portfolio', icon: 'card_giftcard' },
           { name: 'coinList', path: 'coinlist', icon: 'monetization_on' }
         ]
+        
         let email = localStorage.getItem('user_email');
+        console.log(email);
         this.user = await this.userService.getUserByEmail(email);
       }
     });

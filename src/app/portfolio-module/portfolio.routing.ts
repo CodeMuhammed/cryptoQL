@@ -1,14 +1,14 @@
 
 import {
-    AirdropComponent,
+    PortfolioComponent,
 } from "./components";
 
 // import { AanalyticsGuard } from 'app/auth-module/guards';
 
-export const AirdropRoutes = [
+export const PortfolioRoutes = [
     {
         path: "",
-        component: AirdropComponent,
+        component: PortfolioComponent,
         children: [ ]
     }
 ];

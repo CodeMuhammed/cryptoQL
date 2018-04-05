@@ -3,24 +3,24 @@ import { RouterModule } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
 
 import {
-    AirdropComponent,
+    PortfolioComponent,
 } from './components';
 
-import { AirdropRoutes } from './airdrop.routing';
+import { PortfolioRoutes } from './portfolio.routing';
 
 
 @NgModule({
     imports: [
         SharedModule,
-        RouterModule.forChild(AirdropRoutes),
+        RouterModule.forChild(PortfolioRoutes),
     ],
     declarations: [
-        AirdropComponent
+        PortfolioComponent
 
     ], exports: [
-        AirdropComponent
+        PortfolioComponent
     ],
     providers: []
 })
 
-export class AirdropModule { }
+export class PortfolioModule { }

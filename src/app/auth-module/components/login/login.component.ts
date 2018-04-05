@@ -12,10 +12,10 @@ export class LoginComponent implements OnInit {
   private menuItem: MenuItem = {
     'title': '',
     'showAll': false,
-    'backButtonEnabled': true,
+    'backButtonEnabled': false,
     'searchEnabled': false,
     'searchActive': false,
-    'submenuItems': [{ 'title': 'logout', 'route': '', 'icon': 'power_settings_new' }]
+    'submenuItems': [{ 'title': 'logout', 'route': 'auth', 'icon': 'power_settings_new' }]
   }
 
   constructor(

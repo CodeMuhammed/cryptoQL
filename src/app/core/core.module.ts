@@ -12,6 +12,10 @@ import {
   UserService
 } from './services';
 
+import {
+  AuthGuard
+} from './guards';
+
 @NgModule({
   imports: [],
   exports: [
@@ -24,7 +28,8 @@ import {
     RouterService,
     AuthService,
     FirestoreService,
-    UserService
+    UserService,
+    AuthGuard
   ]
 })
 export class CoreModule {

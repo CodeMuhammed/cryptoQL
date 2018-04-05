@@ -1,6 +1,6 @@
 import { OnChanges } from '@angular/core';
-import {Component, Input} from '@angular/core';
-import {Router} from '@angular/router';
+import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
 import { SubMenuItem } from 'app/shared/models/submenuItem';
 import { AuthService } from 'app/core'
 
@@ -23,10 +23,11 @@ export class SubmenuComponent {
         if (subMenu === 'logout') {
             localStorage.clear();
             this.authService.logout();
-        }
-
-        if (route) {
-            this.router.navigateByUrl(`${this.router.url}/${route}`);
+            this.router.navigateByUrl(`/${route}`);
+        } else {
+            if (route) {
+                this.router.navigateByUrl(`${this.router.url}/${route}`);
+            }
         }
     }
 
