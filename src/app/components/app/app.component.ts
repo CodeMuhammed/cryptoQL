@@ -28,7 +28,6 @@ export class AppComponent {
         ]
         
         let email = localStorage.getItem('user_email');
-        console.log(email);
         this.user = await this.userService.getUserByEmail(email);
       }
     });

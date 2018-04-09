@@ -9,7 +9,8 @@ import {
   RouterService,
   AuthService,
   FirestoreService,
-  UserService
+  UserService,
+  PromptsService
 } from './services';
 
 import {
@@ -29,6 +30,7 @@ import {
     AuthService,
     FirestoreService,
     UserService,
+    PromptsService,
     AuthGuard
   ]
 })
@@ -37,7 +39,6 @@ export class CoreModule {
   constructor(
     @Optional() @SkipSelf() parentModule: CoreModule
   ) {
-    console.log('Here we are loaded correctly');
     if (parentModule) {
       throw new Error('CoreModule is already loaded. Import only in AppModule');
     }

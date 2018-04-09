@@ -9,7 +9,8 @@ import {
     NavbarComponent,
     SubmenuComponent,
     ToolbarComponent,
-    ThumbnailComponent
+    ThumbnailComponent,
+    DataTableComponent
 } from './components';
 
 @NgModule({
@@ -17,7 +18,8 @@ import {
         NavbarComponent,
         SubmenuComponent,
         ToolbarComponent,
-        ThumbnailComponent
+        ThumbnailComponent,
+        DataTableComponent
     ],
     exports: [
         FormsModule,
@@ -28,7 +30,8 @@ import {
         NavbarComponent,
         SubmenuComponent,
         ToolbarComponent,
-        ThumbnailComponent
+        ThumbnailComponent,
+        DataTableComponent
     ],
     imports: [
         Mat_LOADERS.IMPORTS,

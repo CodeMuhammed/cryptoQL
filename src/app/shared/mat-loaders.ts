@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
 import {
-    MatTableModule, MatChipsModule,
+    MatTableModule, MatChipsModule, MatSliderModule,
     MatStepperModule, MatFormFieldModule,
     MatOptionModule, MatCardModule,
     MatInputModule, MatToolbarModule,
@@ -46,6 +46,7 @@ export const Mat_LOADERS = {
         MatStepperModule,
         MatDialogModule,
         MatChipsModule,
-        MatTableModule
+        MatTableModule,
+        MatSliderModule
     ]
 };

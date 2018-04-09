@@ -1,0 +1,10 @@
+<data-table
+    [height]="'100vh'"
+    [data]="coinList" 
+    [displayProperties]="getTableProperties()"
+    (onSelectRow)="gotoCoin($event)">
+</data-table>
+
+<button class="fab" color="accent" mat-fab routerLink="../summaryDetails/1">
+    <mat-icon>add</mat-icon>
+ </button>

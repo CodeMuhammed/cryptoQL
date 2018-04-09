@@ -1,0 +1,65 @@
+<div class="container">
+   <div class="selection-header" *ngIf="tableFor">
+       <span *ngIf="!selection.isEmpty()">
+           {{selection.selected.length}}
+           item selected
+       </span>
+       <span *ngIf="selection.isEmpty()">
+           <b>{{tableFor}}</b>
+       </span>
+  </div>
+
+  <div class="header">
+    <mat-form-field floatPlaceholder="never">
+      <input matInput #filter placeholder="Filter {{tableFor}}">
+    </mat-form-field>
+  </div>
+
+  <div style="overflow-x: auto">
+      <mat-table
+          #table
+          [dataSource]="matTableDataSource"
+          [ngStyle]="{ 'min-width': '600px', 'height': height  || '350px' }">
+          <ng-container [matColumnDef]="property"  *ngFor="let property of displayProperties">
+
+                <ng-container [ngSwitch]="property">
+                    <ng-container *ngSwitchDefault>
+                        <mat-header-cell *matHeaderCellDef> {{property}} </mat-header-cell>
+                        <mat-cell *matCellDef="let row"> {{row[property]}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container *ngSwitchCase="'select'">
+                        <mat-header-cell *matHeaderCellDef>
+                            <mat-checkbox (change)="$event ? masterToggle() : null"
+                                        [disabled]="!matTableDataSource.filteredData.length"
+                                        [checked]="isMasterToggleChecked()"
+                                        [indeterminate]="isMasterToggleIndeterminate()">
+                            </mat-checkbox>
+                        </mat-header-cell>
+                        <mat-cell *matCellDef="let row">
+                            <mat-checkbox (click)="$event.stopPropagation()"
+                                        (change)="$event ? selection.toggle(row) : null"
+                                        [checked]="selection.isSelected(row)">
+                            </mat-checkbox>
+                        </mat-cell>
+                    </ng-container>
+                </ng-container>
+
+            </ng-container>
+
+            <mat-header-row *matHeaderRowDef="displayProperties"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayProperties;"
+                    [class.active]="selection.isSelected(row)"
+                    class="user-row"
+                    (click)="handleRowSelect(row)"></mat-row>
+        </mat-table>
+  </div>
+
+  <div class="footer" *ngIf="actionButtonLabel">
+      <button
+        [disabled]="selection.selected.length === 0"
+        mat-button
+        color="primary"
+        (click)="actionButtonClick()">{{actionButtonLabel}}</button>
+  </div>
+</div>

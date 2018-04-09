@@ -1,0 +1,55 @@
+<mat-card-content *ngIf="form">
+    <form [formGroup]="form" fxLayout="column" role="form">
+        <mat-form-field class="full-width">
+            <input matInput placeholder="Name" type="text" formControlName="name">
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+            <input matInput placeholder="Symbol" type="text" formControlName="symbol">
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-select placeholder="Coin Type" formControlName="type" class="form-control" class="full-width">
+                <mat-option *ngFor="let type of ['coin', 'ico']" [value]="type">
+                    {{ type }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+            <input matInput placeholder="price (usd)" type="number" formControlName="price">
+        </mat-form-field>
+       
+        <div fxLayout="column" style="margin-top: 1em">
+            <span fxFlex>Rating</span>
+            <span fxFlex >
+                <mat-slider class="full-width" min="1" max="5" step="1" value="1" thumbLabel tickInterval="1" formControlName="rating"></mat-slider>
+            </span>
+        </div>
+
+        <mat-form-field fxFlex>
+            <input matInput [matDatepicker]="releaseDate" placeholder="Relaease Date" class="form-control" formControlName="releaseDate">
+            <mat-datepicker-toggle matSuffix [for]="releaseDate"></mat-datepicker-toggle>
+            <mat-datepicker #releaseDate touchUi="true"></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+            <textarea matInput placeholder="Description" type="text" formControlName="description"></textarea>
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+            <input matInput placeholder="website url" type="text" formControlName="websiteUrl">
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+            <input matInput placeholder="logo url" type="text" formControlName="logoUrl">
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+            <input matInput placeholder="Contract address" type="text" formControlName="contractAddress">
+        </mat-form-field>
+    </form>
+</mat-card-content>
+<mat-card-actions>
+    <button mat-button [disabled]="!form.valid" (click)="save()">{{isNew? 'Save' : 'Update'}}</button>
+</mat-card-actions>

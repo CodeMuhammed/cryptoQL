@@ -1,14 +1,29 @@
 
 import {
     PortfolioComponent,
-} from "./components";
+    PortfolioStartComponent,
+    CoinPageComponent
+} from './components';
 
 // import { AanalyticsGuard } from 'app/auth-module/guards';
 
 export const PortfolioRoutes = [
     {
-        path: "",
+        path: '',
         component: PortfolioComponent,
-        children: [ ]
+        children: [
+            {
+                path: '',
+                redirectTo: 'summary'
+            },
+            {
+                path: 'summary',
+                component: PortfolioStartComponent
+            },
+            {
+                path: 'summaryDetails/:id',
+                component: CoinPageComponent
+            }
+        ]
     }
 ];

@@ -1,0 +1,19 @@
+<mat-card>
+    <mat-tab-group dynamicHeight mat-stretch-tabs>
+        <mat-tab>
+            <ng-template mat-tab-label>
+                Details
+            </ng-template>
+
+            <app-coin-form [coinId]="coinId"> </app-coin-form>
+        </mat-tab>
+
+        <mat-tab>
+            <ng-template mat-tab-label>
+                Accounts
+            </ng-template>
+
+            <span> accounts for the coin </span>
+        </mat-tab>
+    </mat-tab-group>
+</mat-card>

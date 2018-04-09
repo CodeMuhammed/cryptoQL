@@ -15,7 +15,7 @@ export class LoginComponent implements OnInit {
     'backButtonEnabled': false,
     'searchEnabled': false,
     'searchActive': false,
-    'submenuItems': [{ 'title': 'logout', 'route': 'auth', 'icon': 'power_settings_new' }]
+    'submenuItems': []
   }
 
   constructor(
@@ -50,7 +50,7 @@ export class LoginComponent implements OnInit {
     }
 
     this.setCookiesInLocalstorage(user);
-    this.router.navigateByUrl('/portfolio');
+    location.reload();
   }
 
   setCookiesInLocalstorage(user: User) {

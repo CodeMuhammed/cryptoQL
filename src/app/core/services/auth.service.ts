@@ -3,7 +3,8 @@ import { Observer } from 'rxjs/Observer';
 import { Observable } from 'rxjs/Observable';
 import { AngularFireAuth } from 'angularfire2/auth/auth';
 import * as firebase from 'firebase/app';
-import { Router } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Injectable()
 export class AuthService {
@@ -13,6 +14,7 @@ export class AuthService {
     public authState$: any;
 
     public constructor(
+        private location: Location,
         private afAuth: AngularFireAuth,
         private router: Router
     ) {
@@ -22,13 +24,25 @@ export class AuthService {
 
             if (this.isFirstAuth) {
                 // we can show the loading screen @TODO
-                setTimeout(() => {
-                    this.isFirstAuth = false;
-                    let url = this.authState ? '/portfolio' : '/auth';
-                    this.router.navigateByUrl(url);
-                }, 300);
+                let url = '/auth';
+
+                if (auth) {
+                    let lastPath: string = localStorage.getItem('last_path');
+                    url = lastPath? lastPath : '/portfolio';
+                }
+
+                this.router.navigateByUrl(url);
             }
         });
+
+        // we listen to changes to the route
+        this.router.events.subscribe((event) => {
+            if (event instanceof NavigationEnd) {
+                if(event.urlAfterRedirects.indexOf('auth') == -1) {
+                    localStorage.setItem('last_path', event.urlAfterRedirects);
+                }
+            }
+        })
     }
 
     public register(user: any) {
