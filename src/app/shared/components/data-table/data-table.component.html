@@ -28,6 +28,18 @@
                         <mat-cell *matCellDef="let row"> {{row[property]}} </mat-cell>
                     </ng-container>
 
+                    <ng-container *ngSwitchCase="'Name'">
+                        <mat-header-cell *matHeaderCellDef> 
+                            {{property}} 
+                        </mat-header-cell>
+                        <mat-cell *matCellDef="let row" fxLayout="row" fxLayoutAlign="start">
+                            <span fxFlex="1.5em">
+                                <img [src]="row['logo']" style="width: 1.3em" [alt]="row[property]">
+                            </span>
+                            <span fxFlex>{{row[property]}} </span>
+                        </mat-cell>
+                    </ng-container>
+
                     <ng-container *ngSwitchCase="'select'">
                         <mat-header-cell *matHeaderCellDef>
                             <mat-checkbox (change)="$event ? masterToggle() : null"

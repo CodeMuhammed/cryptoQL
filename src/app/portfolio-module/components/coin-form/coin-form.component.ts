@@ -40,6 +40,7 @@ export class CoinFormComponent {
              default: {
                this.coinsService.getCoin(this.coinId).subscribe((coin: Coin) => {
                  this.coin = coin;
+                 this.setFormValues();
                });
              }
           }

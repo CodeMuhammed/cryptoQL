@@ -15,6 +15,13 @@ export class CoinsService {
         return this.afsDB.docWithId$(ref);
     }
 
+    public getAllCoins() {
+        let userId: string = localStorage.getItem('user_id');
+        let ref: string = `/users/${userId}/coins`;
+
+        return this.afsDB.colWithIds$(ref);   
+    }
+
     public updateCoin(coin: Coin) {
         let userId: string = localStorage.getItem('user_id');
         let ref: string = `/users/${userId}/coins/${coin.id}`;
@@ -27,5 +34,12 @@ export class CoinsService {
         let ref: string = `/users/${userId}/coins`;
 
         return this.afsDB.col(ref).add(coin);
+    }
+
+    public getCoinAccounts(coinId: string) {
+        let userId: string = localStorage.getItem('user_id');
+        let ref: string = `/users/${userId}/coins/${coinId}/accounts`;
+
+        return this.afsDB.colWithIds$(ref);
     }
 }
