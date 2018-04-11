@@ -1,14 +1,13 @@
-<div class="datagrid" style="height: 100vh">
-    <table>
+<div class="datagrid" style="height: 100vh; position: relative">
+    <table style="margin-bottom: 4em">
         <thead>
             <th>Email</th>
             <th>TotalCoins</th>
             <th>Password</th>
-            <th>Claimed</th>
             <th>Action</th>
         </thead>
         <tbody>
-            <tr *ngFor="let account of accounts">
+            <tr *ngFor="let account of accountsForView">
                 <td style="cursor: pointer"
                     ngxClipboard 
                     [cbContent]="account.email"
@@ -21,7 +20,6 @@
                     (cbOnSuccess)="promptCopy('password copied')">
                     {{maskPassword(account.password)}}
                 </td>
-                <td>{{account.claimed}}</td>
                 <td>
                     <button mat-icon-button [matMenuTriggerFor]="accountMenu">
                         <mat-icon>more_vert</mat-icon>
@@ -41,7 +39,17 @@
     </table>
 
 
-<button class="fab" color="accent" mat-fab (click)="addAccount()">
-    <mat-icon>add</mat-icon>
-</button>
+    <button class="fab" color="accent" mat-fab (click)="addAccount()">
+        <mat-icon>add</mat-icon>
+    </button>
+
+    <div class="footer">   
+        <mat-slide-toggle 
+            (ngModelChange)="toggleClaimed($event)"
+            [(ngModel)]="showClaimed" 
+            class="form-control">
+            Claimed
+        </mat-slide-toggle>
+    </div>
+    
 </div>

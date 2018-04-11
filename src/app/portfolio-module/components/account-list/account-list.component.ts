@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, SimpleChanges } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MenuItem, Account, Coin } from 'app/shared/models';
 import { RouterService, CoinsService, PromptsService } from 'app/core';
@@ -23,8 +23,40 @@ export class AccountsComponent {
   @Input()
   public accounts: Account[];
 
+  public accountsForView: Account[] = [];
+
   @Input()
   public coin: Coin;
+
+  public showClaimed: boolean = false;
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes.accounts) {
+      if (this.isNewChange(changes.accounts)) {
+
+        this.accounts = this.accounts.sort((account1: Account, account2: Account) => {
+          if (account1.totalCoins < account2.totalCoins) {
+            return 1;
+          }
+          else if (account1.totalCoins > account2.totalCoins) {
+            return -1;
+          }
+          else {
+            return 0;
+          }
+        });
+
+        this.toggleClaimed(false);
+      }
+    }
+  }
+
+  private isNewChange(change: any) {
+    let prev = JSON.stringify(change.previousValue);
+    let current = JSON.stringify(change.currentValue);
+
+    return prev != current;
+  }
 
   addAccount() {
     this.showDialogue(async (account: Account) => {
@@ -72,7 +104,8 @@ export class AccountsComponent {
   promptCopy(text: string) {
     this.promptsService.showToast(text);
   }
+
+  toggleClaimed(event) {
+    this.accountsForView = this.accounts.filter(account => account.claimed == event);
+  }
 }
-
-
-// to take snapshot command + shift + 3

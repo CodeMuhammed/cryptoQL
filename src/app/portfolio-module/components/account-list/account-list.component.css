@@ -1,6 +1,15 @@
 .fab {
   position: fixed;
-  right: 20px;
-  bottom: 20px;
+  right: 2em;
+  bottom: 2em;
   z-index: 9000;
+}
+
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background: rgba(0,0, 0, .8);
+    padding: 1em 2em
 }
