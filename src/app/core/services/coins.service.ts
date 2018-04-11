@@ -50,4 +50,18 @@ export class CoinsService {
         
         return this.afsDB.col(ref).add(account);
     }
+
+    public updateAccount(account: Account, coinId: string): Promise<any> {
+        let userId: string = localStorage.getItem('user_id')
+        let ref: string = `/users/${userId}/coins/${coinId}/accounts/${account.id}`;
+        
+        return this.afsDB.doc(ref).update(account);
+    }
+
+    public deleteAccount(accountId: string, coinId: string): Promise<any> {
+        let userId: string = localStorage.getItem('user_id')
+        let ref: string = `/users/${userId}/coins/${coinId}/accounts/${accountId}`;
+        
+        return this.afsDB.doc(ref).delete();
+    }
 }

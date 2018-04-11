@@ -1,10 +1,40 @@
-<data-table
-    [height]="'100vh'"
-    [data]="coinListForTable" 
-    [displayProperties]="tableProperties"
-    (onSelectRow)="gotoCoin($event)">
-</data-table>
+<mat-card style="padding-left: 0; padding-right: 0"> 
+<div class="datagrid">
+    <table>
+        <thead>
+            <th>Name</th>
+            <th>Symbol</th>
+            <th>Price</th>
+            <th>Release Date</th>
+            <th>Total Owned</th>
+            <th>Worth</th>
+            <th>Actions</th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let coin of coinListForTable">
+                <td (click)="gotoCoin(coin)" style="cursor: pointer">{{coin.name}}</td>
+                <td>{{coin.symbol}}</td>
+                <td>{{coin.price}}</td>
+                <td>{{coin.releaseDate}}</td>
+                <td>{{coin.totalOwned}}</td>
+                <td>{{coin.worth}}</td>
+                <td>
+                    <button mat-icon-button [matMenuTriggerFor]="accountMenu">
+                        <mat-icon>more_vert</mat-icon>
+                    </button>
+                </td>
+
+                 <mat-menu #accountMenu="matMenu">
+                    <a mat-menu-item [href]="coin.websiteUrl" target="_blank">
+                        <mat-icon>link</mat-icon> Go to website
+                    </a>
+                </mat-menu>
+            </tr>
+        </tbody>
+    </table>
+</div>
 
 <button class="fab" color="accent" mat-fab routerLink="../summaryDetails/1">
     <mat-icon>add</mat-icon>
 </button>
+ </mat-card>

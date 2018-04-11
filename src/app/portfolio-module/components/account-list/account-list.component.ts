@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MenuItem, Account, Coin } from 'app/shared/models';
-import { RouterService, CoinsService, PromptsService} from 'app/core';
+import { RouterService, CoinsService, PromptsService } from 'app/core';
 import { MatDialog } from '@angular/material';
 import { NewAccountPromptComponent } from 'app/shared/entry-components';
 
@@ -26,23 +26,33 @@ export class AccountsComponent {
   @Input()
   public coin: Coin;
 
-  getAccountsProperty() {
-    return ['email', 'totalCoins', 'password'];
+  addAccount() {
+    this.showDialogue(async (account: Account) => {
+      if (account) {
+        await this.coinsService.addAccount(account, this.coin.id);
+        this.promptsService.showToast('account added successfully');
+      }
+    });
   }
 
-  addAccount() {
-      this.showDialogue(async (account: Account) => {
-        if(account) {
-          await this.coinsService.addAccount(account, this.coin.id);
-          this.promptsService.showToast('account added successfully');
-        }
-      });
+  editAccount(account: Account) {
+    this.showDialogue(async (account: Account) => {
+      if (account) {
+        await this.coinsService.updateAccount(account, this.coin.id);
+        this.promptsService.showToast('account updated successfully');
+      }
+    }, account);
+  }
+
+  async deleteAccount(account: Account) {
+    await this.coinsService.deleteAccount(account.id, this.coin.id);
+    this.promptsService.showToast('account deleted successfully');
   }
 
   showDialogue(handler: any, account?: Account) {
     let dialogRef = this.dialog.open(NewAccountPromptComponent, {
       width: '500px',
-      data: { 
+      data: {
         coinName: this.coin.name,
         account
       }
@@ -53,6 +63,10 @@ export class AccountsComponent {
         handler(result);
       }
     });
+  }
+
+  maskPassword(pass: string) {
+    return '*'.repeat(pass.length);
   }
 
 }

@@ -21,15 +21,6 @@ export class PortfolioStartComponent implements OnInit {
 
   private coins: Coin[] = [];
   public coinListForTable: any[] = [];
-  public tableProperties: string[] = [
-    'S/N',
-    'Name',
-    'Symbol',
-    'Price',
-    'Release Date',
-    'Total Owned',
-    'Worth'
-  ];
 
   constructor(
     private route: ActivatedRoute,
@@ -51,15 +42,15 @@ export class PortfolioStartComponent implements OnInit {
 
     this.coins.forEach((coin: Coin, index: number) => {
       let data = {
-        'S/N': index + 1,
-        'Name': coin.name,
-        'Symbol': coin.symbol,
-        'Price': coin.price,
-        'Release Date': coin.releaseDate.toLocaleDateString(),
-        'Total Owned': 0,
-        'Worth': 0,
-        'id': coin.id,
-        'logo': coin.logoUrl
+        name: coin.name,
+        symbol: coin.symbol,
+        price: coin.price,
+        releaseDate: coin.releaseDate.toLocaleDateString(),
+        totalOwned: 0,
+        worth: 0,
+        id: coin.id,
+        logo: coin.logoUrl,
+        websiteUrl: coin.websiteUrl
       };
 
       this.coinListForTable.push(data);
@@ -75,9 +66,9 @@ export class PortfolioStartComponent implements OnInit {
         totalCoins += account.totalCoins;
       });
       
-      let worth: string = (totalCoins * data['Price']).toFixed(2);
-      data['Total Owned'] = `${totalCoins} $${data['Symbol']}`;
-      data['Worth'] = worth;
+      let worth: string = (totalCoins * data.price).toFixed(2);
+      data.totalOwned = `${totalCoins} $${data.symbol}`;
+      data.worth = worth;
 
       this.menuItem.title = `Total worth: ${worth} USD`;
       this.routerService.setMainMenuItem(this.menuItem);

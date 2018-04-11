@@ -39,7 +39,8 @@ export class NewAccountPromptComponent {
             email: ['', Validators.email],
             password: ['', Validators.required],
             ethAddress: ['', Validators.compose([this.ethAddressValidator()])],
-            totalCoins: ['', Validators.required]
+            totalCoins: ['', Validators.required],
+            claimed: [''],
         });
     }
 
@@ -48,7 +49,8 @@ export class NewAccountPromptComponent {
             email: this.account ? this.account.email : '',
             password: this.account ? this.account.password : '',
             ethAddress: this.account ? this.account.ethAddress : '',
-            totalCoins: this.account ? this.account.totalCoins : ''
+            totalCoins: this.account ? this.account.totalCoins : '',
+            claimed: this.account ? this.account.claimed : ''
         });
     }
 

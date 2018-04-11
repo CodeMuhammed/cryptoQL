@@ -35,7 +35,9 @@ import { NewAccountPromptComponent } from './entry-components';
         ToolbarComponent,
         ThumbnailComponent,
         DataTableComponent,
-        NewAccountPromptComponent
+        NewAccountPromptComponent,
+        FormsModule,
+        ReactiveFormsModule,
     ],
     imports: [
         Mat_LOADERS.IMPORTS,

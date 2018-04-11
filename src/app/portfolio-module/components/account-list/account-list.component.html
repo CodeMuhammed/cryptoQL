@@ -1,10 +1,36 @@
-<data-table
-    [tableFor]="coin?.name"
-    [height]="'100vh'"
-    [data]="accounts" 
-    [displayProperties]="getAccountsProperty()"
-    (allowSelection)="false">
-</data-table>
+<div class="datagrid">
+    <table>
+        <thead>
+            <th>Email</th>
+            <th>TotalCoins</th>
+            <th>Password</th>
+            <th>Claimed</th>
+            <th>Action</th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let account of accounts">
+                <td>{{account.email}}</td>
+                <td>{{account.totalCoins}}</td>
+                <td>{{maskPassword(account.password)}}</td>
+                <td>{{account.claimed}}</td>
+                <td>
+                    <button mat-icon-button [matMenuTriggerFor]="accountMenu">
+                        <mat-icon>more_vert</mat-icon>
+                    </button>
+                </td>
+
+                 <mat-menu #accountMenu="matMenu">
+                    <button mat-menu-item (click)="editAccount(account)">
+                        <mat-icon>edit</mat-icon> Edit
+                    </button>
+                    <button mat-menu-item (click)="deleteAccount(account)">
+                        <mat-icon>delete</mat-icon> Delete
+                    </button>
+                </mat-menu>
+            </tr>
+        </tbody>
+    </table>
+</div>
 
 <button class="fab" color="accent" mat-fab (click)="addAccount()">
     <mat-icon>add</mat-icon>

@@ -79,8 +79,7 @@ export class CoinFormComponent {
   }
 
   async save() {
-    this.coin = Object.assign({}, this.form.value, this.coin);
-
+    this.coin = Object.assign({}, this.coin, this.form.value);
 
     if(this.isNew) {
        await this.coinsService.createCoin(this.coin);

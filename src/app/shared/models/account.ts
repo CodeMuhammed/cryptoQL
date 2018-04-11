@@ -4,4 +4,5 @@ export class Account {
     public password: string;
     public ethAddress: string;
     public totalCoins: number;
+    public claimed: boolean = false;
 }

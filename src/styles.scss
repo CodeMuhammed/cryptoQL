@@ -135,7 +135,8 @@ mat-card.mat-card {
 }
 
 .datagrid {
-    overflow: hidden;
+     position: relative;
+     overflow-x: auto;
 }
 
 .datagrid table {
@@ -150,7 +151,7 @@ mat-card.mat-card {
 }
 
 .datagrid table thead th {
-    color: rgba(0, 0, 0, 0.54);
+    color: #b0bec5;
     font-size: 12px;
     font-weight: bold;
 }
@@ -163,18 +164,17 @@ mat-card.mat-card {
 
 .datagrid table thead th:first-child {
     border: none;
-    color: rgba(0, 0, 0, 0.54);
     font-weight: bold;
 }
 
 .datagrid table tbody td {
-    color: rgba(0, 0, 0, 0.64);
+    color: #b0bec5;
     font-size: 12px;
     font-weight: normal;
 }
 
 .datagrid table tbody tr:hover {
-    background-color: #efefef;
+    background-color: rgba(255, 255, 255, 0.13)
 }
 
 .datagrid table tbody .alt td {
@@ -183,7 +183,6 @@ mat-card.mat-card {
 
 
 .datagrid table tbody td:first-child {
-    color: rgba(0, 0, 0, 0.64);
     border-left: none;
     font-weight: bold;
 }
