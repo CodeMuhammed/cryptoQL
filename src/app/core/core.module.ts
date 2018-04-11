@@ -10,11 +10,12 @@ import {
   AuthService,
   FirestoreService,
   UserService,
-  PromptsService
+  PromptsService,
 } from './services';
 
 import {
-  AuthGuard
+  AuthGuard, 
+  NoAuthGuard
 } from './guards';
 
 @NgModule({
@@ -31,7 +32,8 @@ import {
     FirestoreService,
     UserService,
     PromptsService,
-    AuthGuard
+    AuthGuard,
+    NoAuthGuard
   ]
 })
 export class CoreModule {

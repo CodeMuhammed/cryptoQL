@@ -9,9 +9,18 @@
         </thead>
         <tbody>
             <tr *ngFor="let account of accounts">
-                <td>{{account.email}}</td>
+                <td style="cursor: pointer"
+                    ngxClipboard 
+                    [cbContent]="account.email"
+                    (cbOnSuccess)="promptCopy(account.email + ' copied')">
+                    {{account.email}}</td>
                 <td>{{account.totalCoins}}</td>
-                <td>{{maskPassword(account.password)}}</td>
+                <td style="cursor: pointer"
+                    ngxClipboard 
+                    [cbContent]="account.password" 
+                    (cbOnSuccess)="promptCopy('password copied')">
+                    {{maskPassword(account.password)}}
+                </td>
                 <td>{{account.claimed}}</td>
                 <td>
                     <button mat-icon-button [matMenuTriggerFor]="accountMenu">

@@ -4,6 +4,7 @@ import { RouterModule } from "@angular/router";
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { Mat_LOADERS } from "./mat-loaders";
+import { ClipboardModule } from 'ngx-clipboard';
 
 import {
     NavbarComponent,
@@ -38,13 +39,15 @@ import { NewAccountPromptComponent } from './entry-components';
         NewAccountPromptComponent,
         FormsModule,
         ReactiveFormsModule,
+        ClipboardModule
     ],
     imports: [
         Mat_LOADERS.IMPORTS,
         FormsModule,
         ReactiveFormsModule,
         CommonModule,
-        RouterModule
+        RouterModule,
+        ClipboardModule
     ],
     providers: [],
     entryComponents: [

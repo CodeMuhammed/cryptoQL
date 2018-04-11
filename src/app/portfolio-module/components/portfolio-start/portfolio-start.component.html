@@ -30,10 +30,8 @@
                     <mat-menu #accountMenu="matMenu">
                         <a mat-menu-item [href]="coin.websiteUrl" target="_blank" 
                           fxLayout="row" fxLayoutAlign="start center">
-                            <thumbnail [image]="coin.logo" [size]="'1.5em'"> </thumbnail>
-                            <span>
-                                Go to {{coin.name}}
-                            </span>
+                            <thumbnail fxLayoutAlign="center center" [image]="coin.logo" [size]="'1.5em'"> </thumbnail>
+                            <span>Open {{coin.name}}</span>
                         </a>
                     </mat-menu>
                 </tr>

@@ -1,4 +1,4 @@
-import { AuthGuard } from 'app/core' 
+import { AuthGuard, NoAuthGuard } from 'app/core' 
 
 export const AppRoutes = [
     {
@@ -9,6 +9,7 @@ export const AppRoutes = [
     {
         path: 'auth',
         loadChildren: './auth-module/auth.module#AuthModule',
+        canActivate: [NoAuthGuard],
     },
     {
         path: 'portfolio',

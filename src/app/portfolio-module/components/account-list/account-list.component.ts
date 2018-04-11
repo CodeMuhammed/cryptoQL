@@ -69,6 +69,9 @@ export class AccountsComponent {
     return '*'.repeat(pass.length);
   }
 
+  promptCopy(text: string) {
+    this.promptsService.showToast(text);
+  }
 }
 
 

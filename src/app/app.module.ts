@@ -10,7 +10,6 @@ import { AngularFireModule } from "angularfire2";
 import { AngularFireDatabaseModule } from "angularfire2/database-deprecated";
 import { AngularFireAuthModule } from "angularfire2/auth";
 import { AngularFirestoreModule } from 'angularfire2/firestore';
-
 import { CoreModule } from 'app/core';
 import { SharedModule } from 'app/shared';
 import { AppComponent } from './components';
@@ -32,7 +31,7 @@ import * as Rxjs from 'rxjs';
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
     AngularFirestoreModule,
-    AngularFireAuthModule,
+    AngularFireAuthModule
   ],
   providers: [HttpClient],
   bootstrap: [AppComponent]
