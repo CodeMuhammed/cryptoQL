@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, SimpleChanges } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MenuItem, Account, Coin } from 'app/shared/models';
-import { RouterService, CoinsService, PromptsService } from 'app/core';
+import { RouterService, CoinsService, PromptsService, SearchService } from 'app/core';
 import { MatDialog } from '@angular/material';
 import { NewAccountPromptComponent } from 'app/shared/entry-components';
 
@@ -12,6 +12,7 @@ import { NewAccountPromptComponent } from 'app/shared/entry-components';
 })
 export class AccountsComponent {
   constructor(
+    private searchService: SearchService,
     private promptsService: PromptsService,
     public dialog: MatDialog,
     private coinsService: CoinsService,
@@ -29,6 +30,18 @@ export class AccountsComponent {
   public coin: Coin;
 
   public showClaimed: boolean = false;
+
+  ngOnInit() {
+    this.searchService.searchParentSource$.subscribe((text: string) => {
+      this.accountsForView = this.accounts.filter(account => {
+        let hasText: boolean = true;
+        if (text) {
+          hasText = account.email.indexOf(text) != -1;
+        }
+        return hasText;
+      });
+    })
+  }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.accounts) {

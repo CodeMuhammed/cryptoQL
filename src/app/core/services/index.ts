@@ -5,3 +5,4 @@ export * from './auth.service';
 export * from './firestore.service';
 export * from './user.service';
 export * from './prompts.service';
+export * from './search.service';

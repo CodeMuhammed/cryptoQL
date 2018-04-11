@@ -15,16 +15,17 @@
     </mat-toolbar>
 
     <!-- start seacrh bar-->
-    <mat-toolbar *ngIf="menuItem?.searchActive" class="app-toolbar" color="accent">
-        <div layout-gt-sm="row">
-            <mat-form-field class="md-block">
-                <input matInput (keyup)="doSearch(inputCode.value)" #inputCode>
+    <mat-toolbar *ngIf="menuItem?.searchActive" class="app-toolbar">
+        <div fxLayout="row" fxLayoutAlign="center space-between" style="width: 100%">
+            <mat-form-field fxFlex class="full-width">
+                <input matInput placeholder="Search list" (keyup)="doSearch(inputCode.value)" #inputCode>
             </mat-form-field>
+            <div fxFlex="3em"  fxLayoutAlign="center end">
+                <button mat-icon-button (click)="enableSearchBar(); resetSearch()">
+                    <mat-icon>close</mat-icon>
+                </button>
+            </div>
         </div>
-        <span style="margin-left: 20px" class="example-fill-remaining-space"></span>
-        <button mat-icon-button (click)="enableSearchBar();resetSearch()">
-            <mat-icon>close</mat-icon>
-        </button>
     </mat-toolbar>
     <!-- end of search bar-->
 </div>

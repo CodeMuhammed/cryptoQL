@@ -11,6 +11,7 @@ import {
   FirestoreService,
   UserService,
   PromptsService,
+  SearchService
 } from './services';
 
 import {
@@ -33,7 +34,8 @@ import {
     UserService,
     PromptsService,
     AuthGuard,
-    NoAuthGuard
+    NoAuthGuard,
+    SearchService
   ]
 })
 export class CoreModule {

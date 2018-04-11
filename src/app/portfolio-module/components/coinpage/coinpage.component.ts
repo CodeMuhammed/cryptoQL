@@ -23,7 +23,7 @@ export class CoinPageComponent implements OnInit {
     'title': '',
     'showAll': false,
     'backButtonEnabled': true,
-    'searchEnabled': false,
+    'searchEnabled': true,
     'searchActive': false,
     'submenuItems': [{ 'title': 'logout', 'route': 'auth', 'icon': 'power_settings_new' }]
   }

@@ -1,8 +1,9 @@
 import { Location } from '@angular/common';
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
-import { RouterService } from 'app/core';
+import { RouterService, SearchService } from 'app/core';
 import { MenuItem } from 'app/shared/models/menuItem';
+
 @Component({
     selector: 'app-toolbar',
     templateUrl: 'toolbar.component.html',
@@ -18,13 +19,14 @@ export class ToolbarComponent implements OnDestroy, OnInit {
     public showAllState: boolean;
 
     public constructor(
+        private searchService: SearchService,
         private routerService: RouterService,
         private location: Location
     ) { }
 
     protected open() {
         this.nav.toggle().then((res) => {
-            if(res) {
+            if (res) {
                 if (res.type === 'open') {
                     return false;
                 }
@@ -51,6 +53,16 @@ export class ToolbarComponent implements OnDestroy, OnInit {
             this.menuItem.searchActive = false;
 
         }
+    }
+
+    protected resetSearch() {
+        this.searchService.setParentSearchItem("");
+        this.menuItem.searchEnabled = true;
+    }
+
+    // start SearchService
+    protected doSearch(search: string) {
+        this.searchService.setParentSearchItem(search);
     }
 
     // click on back button
