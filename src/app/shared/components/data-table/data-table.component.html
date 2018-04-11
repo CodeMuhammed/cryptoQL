@@ -1,17 +1,7 @@
 <div class="container">
-   <div class="selection-header" *ngIf="tableFor">
-       <span *ngIf="!selection.isEmpty()">
-           {{selection.selected.length}}
-           item selected
-       </span>
-       <span *ngIf="selection.isEmpty()">
-           <b>{{tableFor}}</b>
-       </span>
-  </div>
-
   <div class="header">
-    <mat-form-field floatPlaceholder="never">
-      <input matInput #filter placeholder="Filter {{tableFor}}">
+    <mat-form-field>
+      <input matInput #filter placeholder="Filter {{tableFor}} data">
     </mat-form-field>
   </div>
 
@@ -48,7 +38,7 @@
                                         [indeterminate]="isMasterToggleIndeterminate()">
                             </mat-checkbox>
                         </mat-header-cell>
-                        <mat-cell *matCellDef="let row">
+                        <mat-cell *matCellDef="let row" >
                             <mat-checkbox (click)="$event.stopPropagation()"
                                         (change)="$event ? selection.toggle(row) : null"
                                         [checked]="selection.isSelected(row)">

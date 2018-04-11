@@ -1,0 +1,11 @@
+<data-table
+    [tableFor]="coin?.name"
+    [height]="'100vh'"
+    [data]="accounts" 
+    [displayProperties]="getAccountsProperty()"
+    (allowSelection)="false">
+</data-table>
+
+<button class="fab" color="accent" mat-fab (click)="addAccount()">
+    <mat-icon>add</mat-icon>
+</button>

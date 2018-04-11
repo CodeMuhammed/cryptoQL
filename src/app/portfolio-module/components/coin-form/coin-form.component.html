@@ -1,4 +1,4 @@
-<mat-card-content *ngIf="form">
+<mat-card-content *ngIf="form" style="padding: .5em">
     <form [formGroup]="form" fxLayout="column" role="form">
         <mat-form-field class="full-width">
             <input matInput placeholder="Name" type="text" formControlName="name">
@@ -50,6 +50,6 @@
         </mat-form-field>
     </form>
 </mat-card-content>
-<mat-card-actions>
-    <button mat-button [disabled]="!form.valid" (click)="save()">{{isNew? 'Save' : 'Update'}}</button>
+<mat-card-actions fxLayout="row" fxLayoutAlign="center">
+    <button mat-button mat-raised-button [disabled]="!form.valid" (click)="save()">{{isNew? 'Save' : 'Update'}}</button>
 </mat-card-actions>

@@ -5,7 +5,8 @@ import {
     PortfolioComponent,
     PortfolioStartComponent,
     CoinPageComponent,
-    CoinFormComponent
+    CoinFormComponent,
+    AccountsComponent
 } from './components';
 import { PortfolioRoutes } from './portfolio.routing';
 
@@ -18,12 +19,14 @@ import { PortfolioRoutes } from './portfolio.routing';
         PortfolioComponent,
         PortfolioStartComponent,
         CoinPageComponent,
-        CoinFormComponent
+        CoinFormComponent,
+        AccountsComponent
     ], exports: [
         PortfolioComponent,
         PortfolioStartComponent,
         CoinPageComponent,
-        CoinFormComponent
+        CoinFormComponent,
+        AccountsComponent
     ],
     providers: []
 })

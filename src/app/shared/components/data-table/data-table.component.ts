@@ -70,7 +70,6 @@ export class DataTableComponent {
     ngOnChanges(changes) {
         if (changes.data) {
             if (changes.data.currentValue && (changes.data.currentValue != changes.data.previousValue)) {
-                console.log(changes.data);
                 this.matTableDataSource!.data = changes.data.currentValue;
             }
         }

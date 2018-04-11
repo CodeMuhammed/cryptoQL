@@ -39,8 +39,6 @@ export class PortfolioStartComponent implements OnInit {
   ) { }
 
   async ngOnInit() {
-    this.routerService.setMainMenuItem(this.menuItem);
-
     // get coinlist for player
     this.coinsService.getAllCoins().subscribe((coins: Coin[]) => {
       this.coins = coins;
@@ -76,9 +74,13 @@ export class PortfolioStartComponent implements OnInit {
       coinsAccounts.forEach((account: Account) => {
         totalCoins += account.totalCoins;
       });
-
+      
+      let worth: string = (totalCoins * data['Price']).toFixed(2);
       data['Total Owned'] = `${totalCoins} $${data['Symbol']}`;
-      data['Worth'] = (totalCoins * data['Price']).toFixed(2);
+      data['Worth'] = worth;
+
+      this.menuItem.title = `Total worth: ${worth} USD`;
+      this.routerService.setMainMenuItem(this.menuItem);
     });
   }
 

@@ -13,13 +13,16 @@ import {
     DataTableComponent
 } from './components';
 
+import { NewAccountPromptComponent } from './entry-components';
+
 @NgModule({
     declarations: [
         NavbarComponent,
         SubmenuComponent,
         ToolbarComponent,
         ThumbnailComponent,
-        DataTableComponent
+        DataTableComponent,
+        NewAccountPromptComponent
     ],
     exports: [
         FormsModule,
@@ -31,7 +34,8 @@ import {
         SubmenuComponent,
         ToolbarComponent,
         ThumbnailComponent,
-        DataTableComponent
+        DataTableComponent,
+        NewAccountPromptComponent
     ],
     imports: [
         Mat_LOADERS.IMPORTS,
@@ -41,6 +45,8 @@ import {
         RouterModule
     ],
     providers: [],
-    entryComponents: []
+    entryComponents: [
+        NewAccountPromptComponent
+    ]
 })
 export class SharedModule { }

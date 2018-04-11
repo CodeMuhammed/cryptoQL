@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { MenuItem } from 'app/shared/models';
-import { RouterService } from 'app/core';
+import { MenuItem, Account, Coin } from 'app/shared/models';
+import { RouterService, CoinsService } from 'app/core';
 
 @Component({
   selector: 'app-coinpage',
@@ -10,12 +10,14 @@ import { RouterService } from 'app/core';
 })
 export class CoinPageComponent implements OnInit {
   constructor(
+    private coinsService: CoinsService,
     private routerService: RouterService,
     private route: ActivatedRoute,
     private router: Router
   ) { }
-  
-  public coinId: string = '';
+
+  public accounts: Account[] = [];
+  public coin: Coin;
   public showAccounts: boolean = true;
   private menuItem: MenuItem = {
     'title': '',
@@ -27,20 +29,38 @@ export class CoinPageComponent implements OnInit {
   }
 
   ngOnInit() {
-     this.route.params.subscribe((params) => {
-        this.coinId = params.id;
+    this.route.params.subscribe(async (params) => {
+      let coinId: string = params.id
+      this.coin = await this.coinsService.getCoin(params.id).take(1).toPromise();
 
-        switch(this.coinId ) {
-          case '1': {
-            this.showAccounts = false;
-            this.menuItem.title = 'New Coin Form';
-            this.routerService.setMainMenuItem(this.menuItem);
-          }
-          default: {
-            // @TODO, the title should reflect the total worth of the coin
-          }
+      switch (coinId) {
+        case '1': {
+          this.showAccounts = false;
+          this.menuItem.title = 'New Coin Form';
+          this.routerService.setMainMenuItem(this.menuItem);
+
+          break;
         }
-     });
+        default: {
+          this.coinsService.getCoinAccounts(coinId)
+            .subscribe((accounts: Account[]) => {
+              let totalCoins = 0;
+              this.accounts = accounts;
+
+              this.accounts.forEach((account: Account) => {
+                totalCoins += account.totalCoins;
+              });
+
+              // we set the title of this coin page
+              let priceUSD: string = (totalCoins * this.coin.price).toFixed(2);
+              this.menuItem.title = `${totalCoins} ${this.coin.symbol} ~ $${priceUSD}`;
+              this.routerService.setMainMenuItem(this.menuItem);
+            });
+
+            break;
+        }
+      }
+    });
   }
 
 }

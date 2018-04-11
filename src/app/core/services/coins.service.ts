@@ -1,14 +1,15 @@
 import { Injectable } from '@angular/core';
 import { FirestoreService } from './firestore.service';
-import { Coin } from 'app/shared/models';
+import { Coin, Account } from 'app/shared/models';
+import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class CoinsService {
     constructor(
         private afsDB: FirestoreService
-    ) {}
+    ) { }
 
-    public getCoin(coinId: string) {
+    public getCoin(coinId: string): Observable<Coin> {
         let userId: string = localStorage.getItem('user_id');
         let ref: string = `/users/${userId}/coins/${coinId}`;
 
@@ -19,7 +20,7 @@ export class CoinsService {
         let userId: string = localStorage.getItem('user_id');
         let ref: string = `/users/${userId}/coins`;
 
-        return this.afsDB.colWithIds$(ref);   
+        return this.afsDB.colWithIds$(ref);
     }
 
     public updateCoin(coin: Coin) {
@@ -41,5 +42,12 @@ export class CoinsService {
         let ref: string = `/users/${userId}/coins/${coinId}/accounts`;
 
         return this.afsDB.colWithIds$(ref);
+    }
+
+    public addAccount(account: Account, coinId: string): Promise<any> {
+        let userId: string = localStorage.getItem('user_id')
+        let ref: string = `/users/${userId}/coins/${coinId}/accounts`;
+        
+        return this.afsDB.col(ref).add(account);
     }
 }

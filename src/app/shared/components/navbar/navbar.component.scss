@@ -59,8 +59,8 @@ mat-toolbar {
 }
 
 .menu-active {
-    background-color: lightgray !important;
-    color: #424242 !important;
+    background-color: rgba(0, 0, 0, .15) !important;
+    color: #fff !important;
     &:focus {
         outline: none;
     }

@@ -4,14 +4,13 @@
   display: flex;
   flex-direction: column;
   min-width: 300px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); 
 }
 
 .header {
   min-height: 64px;
   display: flex;
   align-items: baseline;
-  padding: 8px;
+  padding: .5em;
   font-size: 20px;
 }
 
@@ -23,6 +22,7 @@
 .mat-table {
   overflow: auto;
   border-top: none;
+  padding: .5em;
 }
 
 .footer {
@@ -33,15 +33,6 @@
 .mat-column-select {
   max-width: 48px;
   overflow: inherit;
-}
-
-.selection-header {
-  min-height: 30px;
-  padding: 8px;
-  display: flex;
-  align-items: center;
-  border: none;
-  border-bottom: 1px solid gray;
 }
 
 .user-row {
@@ -55,4 +46,8 @@
 
 .active {
   background: #eaeaea;
+}
+
+.ng-star-inserted {
+  padding: 0 !important;
 }
