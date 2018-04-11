@@ -1,1 +1,5 @@
-<img mat-list-avatar class="mat-card-photo-thumb" src="{{image || defaultImage}}" style="border: 1px solid #efefef">
+<img mat-list-avatar
+   [ngStyle]="{width: size, height: size}"
+   class="mat-card-photo-thumb" 
+   src="{{image || defaultImage}}" 
+   style="border: 1px solid #efefef; display: inline-block">

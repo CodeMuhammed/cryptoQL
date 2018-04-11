@@ -67,7 +67,7 @@ export class PortfolioStartComponent implements OnInit {
       });
       
       let worth: string = (totalCoins * data.price).toFixed(2);
-      data.totalOwned = `${totalCoins} $${data.symbol}`;
+      data.totalOwned = `${totalCoins}`;
       data.worth = worth;
 
       this.menuItem.title = `Total worth: ${worth} USD`;

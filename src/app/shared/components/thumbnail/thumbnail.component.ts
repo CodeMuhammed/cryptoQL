@@ -10,4 +10,7 @@ export class ThumbnailComponent {
 
   @Input()
   public image: string;
+
+  @Input()
+  public size: string;
 }
