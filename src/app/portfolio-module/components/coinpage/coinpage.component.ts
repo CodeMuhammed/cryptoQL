@@ -15,7 +15,7 @@ export class CoinPageComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router
   ) { }
-
+  public coinId: string;
   public accounts: Account[] = [];
   public coin: Coin;
   public showAccounts: boolean = true;
@@ -30,10 +30,9 @@ export class CoinPageComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe(async (params) => {
-      let coinId: string = params.id
-      this.coin = await this.coinsService.getCoin(params.id).take(1).toPromise();
+      this.coinId = params.id
 
-      switch (coinId) {
+      switch (this.coinId) {
         case '1': {
           this.showAccounts = false;
           this.menuItem.title = 'New Coin Form';
@@ -42,7 +41,8 @@ export class CoinPageComponent implements OnInit {
           break;
         }
         default: {
-          this.coinsService.getCoinAccounts(coinId)
+          this.coin = await this.coinsService.getCoin(params.id).take(1).toPromise();
+          this.coinsService.getCoinAccounts(this.coinId)
             .subscribe((accounts: Account[]) => {
               let totalCoins = 0;
               this.accounts = accounts;
@@ -57,7 +57,7 @@ export class CoinPageComponent implements OnInit {
               this.routerService.setMainMenuItem(this.menuItem);
             });
 
-            break;
+          break;
         }
       }
     });

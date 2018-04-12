@@ -73,7 +73,6 @@ export class CoinsService {
         let str = 
         `
 
-
         `;
 
         let emails = str.split(',').map(e => e.trim());
@@ -86,10 +85,10 @@ export class CoinsService {
                 email,
                 password: 'Naturecreate99.',
                 ethAddress: '0x9d6585961457503871587E42804b2D134E57fEf4',
-                totalCoins: 100,
+                totalCoins: 500,
                 claimed: false
             }
-            await this.addAccount(account, 'XXXCkQY6aEVw5cKp2Enp');
+            await this.addAccount(account, 'IgsdrM2i3kXD2ux2yFXf');
             console.log(email, 'added');
         }
 

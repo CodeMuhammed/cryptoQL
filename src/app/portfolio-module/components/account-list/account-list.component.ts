@@ -36,7 +36,7 @@ export class AccountsComponent {
       this.accountsForView = this.accounts.filter(account => {
         let hasText: boolean = true;
         if (text) {
-          hasText = account.email.indexOf(text) != -1;
+          hasText = account.email.toLowerCase().indexOf(text) != -1;
         }
         return hasText;
       });
@@ -89,9 +89,17 @@ export class AccountsComponent {
     }, account);
   }
 
-  async deleteAccount(account: Account) {
-    await this.coinsService.deleteAccount(account.id, this.coin.id);
-    this.promptsService.showToast('account deleted successfully');
+  deleteAccount(account: Account) {
+    this.promptsService.showDialogue(
+      'Are you sure',
+      'Note you may loose track of your coin on this account!',
+      async (confirm) => {
+        if (confirm) {
+          await this.coinsService.deleteAccount(account.id, this.coin.id);
+          this.promptsService.showToast('account deleted successfully');
+        }
+      }
+    );
   }
 
   showDialogue(handler: any, account?: Account) {

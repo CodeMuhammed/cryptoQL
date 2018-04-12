@@ -12,6 +12,7 @@ import { CoinsService, PromptsService } from 'app/core';
 export class CoinFormComponent {
   @Input()
   private coinId: string;
+
   public form: FormGroup;
   public isNew: boolean = false;
   private coin: Coin = new Coin();

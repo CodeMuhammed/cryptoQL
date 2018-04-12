@@ -14,7 +14,7 @@ import {
     DataTableComponent
 } from './components';
 
-import { NewAccountPromptComponent } from './entry-components';
+import { NewAccountPromptComponent, PromptDialog } from './entry-components';
 
 @NgModule({
     declarations: [
@@ -23,7 +23,8 @@ import { NewAccountPromptComponent } from './entry-components';
         ToolbarComponent,
         ThumbnailComponent,
         DataTableComponent,
-        NewAccountPromptComponent
+        NewAccountPromptComponent,
+        PromptDialog
     ],
     exports: [
         FormsModule,
@@ -37,6 +38,7 @@ import { NewAccountPromptComponent } from './entry-components';
         ThumbnailComponent,
         DataTableComponent,
         NewAccountPromptComponent,
+        PromptDialog,
         FormsModule,
         ReactiveFormsModule,
         ClipboardModule
@@ -51,7 +53,8 @@ import { NewAccountPromptComponent } from './entry-components';
     ],
     providers: [],
     entryComponents: [
-        NewAccountPromptComponent
+        NewAccountPromptComponent,
+        PromptDialog
     ]
 })
 export class SharedModule { }

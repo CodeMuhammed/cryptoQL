@@ -13,10 +13,10 @@
                 Details
             </ng-template>
 
-            <app-coin-form [coinId]="coin?.id"> </app-coin-form>
+            <app-coin-form [coinId]="coinId"> </app-coin-form>
         </mat-tab>
     </mat-tab-group>
     <div style="width: 100%; overflow: hidden">
-        <app-coin-form  *ngIf="!showAccounts" [coinId]="coin?.id"> </app-coin-form>
+        <app-coin-form  *ngIf="!showAccounts"  [coinId]="coinId"> </app-coin-form>
     </div>
 </mat-card>
