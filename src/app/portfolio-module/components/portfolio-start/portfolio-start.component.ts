@@ -21,6 +21,7 @@ export class PortfolioStartComponent implements OnInit {
 
   private coins: Coin[] = [];
   public coinListForTable: any[] = [];
+  private overAllTotal: number = 0;
 
   constructor(
     private route: ActivatedRoute,
@@ -70,7 +71,9 @@ export class PortfolioStartComponent implements OnInit {
       data.totalOwned = `${totalCoins}`;
       data.worth = worth;
 
-      this.menuItem.title = `Total worth: ${worth} USD`;
+      this.overAllTotal += parseFloat(worth);
+
+      this.menuItem.title = `Total worth: ${this.overAllTotal} USD`;
       this.routerService.setMainMenuItem(this.menuItem);
     });
   }

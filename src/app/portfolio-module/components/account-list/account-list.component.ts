@@ -36,7 +36,7 @@ export class AccountsComponent {
       this.accountsForView = this.accounts.filter(account => {
         let hasText: boolean = true;
         if (text) {
-          hasText = account.email.toLowerCase().indexOf(text) != -1;
+          hasText = account.email.toLowerCase().indexOf(text.toLowerCase()) != -1;
         }
         return hasText;
       });

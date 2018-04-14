@@ -34,13 +34,13 @@
     </mat-dialog-content>
     
     <div fxFlex="15%" fxLayout="row" fxLayoutAlign="center">
-        <mat-dialog-actions fxFlex fxLayout="row" fxLayoutAlign="start">
+        <mat-dialog-actions fxFlex fxLayout="row" fxLayoutAlign="space-between center">
             <span fxFlex>
                 <button mat-button (click)="cancel()">Cancel</button>
             </span>
 
-            <span fxFlex>
-                <button (click)="continue()" color="primary" [disabled]="!form.valid" mat-raised-button>continue</button>
+            <span fxFlex fxLayoutAlign="end">
+                <button (click)="continue()" color="primary" [disabled]="!form?.valid" mat-raised-button>continue</button>
             </span>
         </mat-dialog-actions>
     </div>

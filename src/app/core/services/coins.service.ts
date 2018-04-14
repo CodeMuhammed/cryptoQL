@@ -65,30 +65,24 @@ export class CoinsService {
         return this.afsDB.doc(ref).delete();
     }
 
-
-
-
-
     crone() {
         let str = 
         `
-
         `;
 
         let emails = str.split(',').map(e => e.trim());
         let userId: string = localStorage.getItem('user_id')
         
         setTimeout(async () => {
-            console.log('lets go');
             for(let email of emails) {
             let account: Account =  {
                 email,
                 password: 'Naturecreate99.',
                 ethAddress: '0x9d6585961457503871587E42804b2D134E57fEf4',
-                totalCoins: 500,
+                totalCoins: 250,
                 claimed: false
             }
-            await this.addAccount(account, 'IgsdrM2i3kXD2ux2yFXf');
+            await this.addAccount(account, '37SkMgd73RndAlsOVWOS');
             console.log(email, 'added');
         }
 
