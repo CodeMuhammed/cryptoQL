@@ -21,7 +21,36 @@ export class PortfolioStartComponent implements OnInit {
 
   private coins: Coin[] = [];
   public coinListForTable: any[] = [];
+  public coinListForTableView: any[] = [];
   private overAllTotal: number = 0;
+  public tableHeaders: any[] = [
+    {
+      name: 'Symbol'
+    },
+    {
+      name: 'Price',
+      sortProperty: 'price',
+      direction: ''
+    },
+    {
+      name: 'Release',
+      sortProperty: 'releaseDate',
+      direction: ''
+    },
+    {
+      name: 'Total',
+      sortProperty: 'totalOwned',
+      direction: ''
+    },
+    {
+      name: 'Worth',
+      sortProperty: 'worth',
+      direction: ''
+    },
+    {
+      name: ''
+    },
+  ];
 
   constructor(
     private route: ActivatedRoute,
@@ -40,6 +69,7 @@ export class PortfolioStartComponent implements OnInit {
 
   computeCoinListForTable() {
     this.coinListForTable = [];
+    this.coinListForTableView = []
 
     this.coins.forEach((coin: Coin, index: number) => {
       let data = {
@@ -57,18 +87,22 @@ export class PortfolioStartComponent implements OnInit {
       this.coinListForTable.push(data);
       this.computeTotalOwned(data);
     });
+
+    this.coinListForTableView = this.coinListForTable.slice();
   }
 
   computeTotalOwned(data: any) {
+    this.overAllTotal = 0;
+
     this.coinsService.getCoinAccounts(data.id).subscribe((coinsAccounts: Account[]) => {
       let totalCoins: number = 0;
-      
+
       coinsAccounts.forEach((account: Account) => {
         totalCoins += account.totalCoins;
       });
-      
+
       let worth: string = (totalCoins * data.price).toFixed(2);
-      data.totalOwned = `${totalCoins}`;
+      data.totalOwned = totalCoins;
       data.worth = worth;
 
       this.overAllTotal += parseFloat(worth);
@@ -82,4 +116,70 @@ export class PortfolioStartComponent implements OnInit {
     this.router.navigate(['../summaryDetails', e.id], { relativeTo: this.route });
   }
 
+  circleSort(header) {
+    let sortStates = ['asc', 'desc', ''];
+
+    // we reset the other sort headers
+    this.tableHeaders = this.tableHeaders.map((item) => {
+      if (header.sortProperty !== item.sortProperty) {
+        item.direction = '';
+      }
+
+      return item;
+    });
+
+    let sortIndex = sortStates.indexOf(header.direction) + 1;
+    header.direction = sortStates[sortIndex % sortStates.length];
+
+    // use that property to sort the array of data
+    this.coinListForTableView = this.coinListForTable.slice();
+
+    if (header.direction) {
+      switch(header.direction) {
+        case 'asc': {
+          this.coinListForTableView = this.sortAscending(this.coinListForTableView, header);
+          break;
+        }
+
+        case 'desc': {
+          this.coinListForTableView = this.sortDescending(this.coinListForTableView, header);
+          break;
+        }
+      }
+    }
+  }
+
+  sortAscending(dataset, header) {
+    return dataset.sort((a, b) => {
+      a = a[header.sortProperty];
+      b = b[header.sortProperty];
+
+      if (a < b) {
+        return -1;
+      }
+      else if (a > b) {
+        return 1;
+      }
+      else {
+        return 0;
+      }
+    });
+  }
+
+  sortDescending(dataset, header) {
+    return dataset.sort((a, b) => {
+      a = a[header.sortProperty];
+      b = b[header.sortProperty];
+
+      if (a > b) {
+        return -1;
+      }
+      else if (a < b) {
+        return 1;
+      }
+      else {
+        return 0;
+      }
+    });
+  }
 }

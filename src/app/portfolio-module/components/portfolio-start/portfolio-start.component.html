@@ -1,23 +1,27 @@
-<mat-card style="padding-left: 0; padding-right: 0"> 
+<mat-card style="padding-left: 0; padding-right: 0">
     <div class="datagrid" style="height: 100vh">
         <table>
             <thead>
-                <th>Symbol</th>
-                <th>Price</th>
-                <th>Release</th>
-                <th>Total</th>
-                <th>Worth</th>
-                <th>Actions</th>
+                <th *ngFor="let header of tableHeaders" (click)="circleSort(header)" style="height: 3em">
+                    <span *ngIf="!header.sortProperty">{{header.name}}</span>
+                    <span *ngIf="header.sortProperty" style="cursor: pointer">
+                        {{header.name}} 
+                        <span [ngSwitch]="header.direction" style="position: absolute">
+                            <mat-icon *ngSwitchCase="'asc'" style="font-size: 1.5em">arrow_upward</mat-icon>
+                            <mat-icon *ngSwitchCase="'desc'" style="font-size: 1.5em">arrow_downward</mat-icon>
+                        </span>
+                    </span>
+                </th>
             </thead>
             <tbody>
-                <tr *ngFor="let coin of coinListForTable">
-                    <td  (click)="gotoCoin(coin)" style="cursor:pointer">
-                        <span  fxLayout="row" fxLayoutAlign="start center">
+                <tr *ngFor="let coin of coinListForTableView">
+                    <td (click)="gotoCoin(coin)" style="cursor:pointer">
+                        <span fxLayout="row" fxLayoutAlign="start center">
                             <thumbnail [image]="coin.logo" [size]="'1.5em'"> </thumbnail>
                             <span>{{coin.symbol}}</span>
                         </span>
                     </td>
-                    <td>{{coin.price}}</td>
+                    <td >{{coin.price}}</td>
                     <td>{{coin.releaseDate}}</td>
                     <td>{{coin.totalOwned}}</td>
                     <td>${{coin.worth}}</td>
@@ -28,8 +32,7 @@
                     </td>
 
                     <mat-menu #accountMenu="matMenu">
-                        <a mat-menu-item [href]="coin.websiteUrl" target="_blank" 
-                          fxLayout="row" fxLayoutAlign="start center">
+                        <a mat-menu-item [href]="coin.websiteUrl" target="_blank" fxLayout="row" fxLayoutAlign="start center">
                             <thumbnail fxLayoutAlign="center center" [image]="coin.logo" [size]="'1.5em'"> </thumbnail>
                             <span>Open {{coin.name}}</span>
                         </a>
@@ -42,4 +45,4 @@
             <mat-icon>add</mat-icon>
         </button>
     </div>
- </mat-card>
+</mat-card>
